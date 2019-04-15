@@ -1,0 +1,49 @@
+<div class="alive-main">
+    <button mat-mini-fab color="white" (click)="openDialog()" [ngClass]="alivePulse" matTooltip="État des services">
+        <mat-icon [ngClass]="aliveStatus">favorite</mat-icon>
+    </button>
+    <ng-template>
+        <div class="alive-dialog-content">
+        <div class="alive-row">
+            <div class="alive-col-3 alive-col-img">
+                <div class="alive-img"></div>
+            </div>
+            <div class="alive-col-7 alive-col-content">
+                <div class="alive-row">
+                    <div class="alive-col-10 alive-content-main">
+                        <div class="alive-content-header">
+                            <div class="alive-title">État des services</div>
+                            <div class="alive-subtitle">Mise à jour toutes les {{ checkInterval }} minutes </div>
+                            </div>
+                            <div class="alive-content-text">
+                                <div *ngFor="let url of urlsRequested">
+                                    <div class="alive-row alive-row-url">
+                                        <div class="alive-col-2-offset-1">
+                                            &bull; Crit' {{ url.priority }}° |
+                                        </div>
+                                        <div class="alive-col-7">
+                                            <span class="alive-item-status {{ url.color }}">{{ url.status }}</span>                                                
+                                            <span matTooltip="{{ url.url }}" [matTooltipPosition]="'after'">{{ url.libelle }}</span>
+                                            <p class="alive-item-description">{{ url.description }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="alive-content-footer">
+                            <mat-divider></mat-divider>
+                            <div class="alive-col-content-footer">
+                                <div class="alive-col-3">
+                                    <a mat-raised-button href="mailto:{{ supportMail }}" class="alive-mail-link">CONTACTER SUPPORT</a>
+                                </div>
+                                <div class="alive-col-7 alive-stats">
+                                    {{ resume.service }} <mat-icon class="alive-icon-router">router</mat-icon> | {{ resume.hs }} H.S.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </ng-template>
+</div>
